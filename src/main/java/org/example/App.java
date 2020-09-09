@@ -97,6 +97,43 @@ public class App
         /*** CHAPTER 2 : end ***/
 
 
+        /**
+         * CHAPTER 3 : start
+         *  - lambda expression feature
+         *  - https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html#shadowing
+         *
+         */
 
+        // effective final
+        int number = 100;
+        IntConsumer intConsumer = value -> System.out.println(number + value);
+        intConsumer.accept(number);
+        // number++; // value that use in lambda must be final or effectively final.
+
+
+        // shadowing (inner class, anonymous class)
+        // inner class
+        class LocalClass { // shadowing variable
+          public String apply(Integer number) {
+              return String.valueOf(number + number);
+          }
+        }
+
+        // anonymous class
+        Function<Integer, String> anonymousClass = new Function<Integer, String>() {
+            @Override
+            public String apply(Integer number) { // shadowing variable
+                return String.valueOf(number + number);
+            }
+        };
+
+        // lambda expression
+        Function<Integer, String> lambdaExpression = value -> String.valueOf(value + number); // same scope with local variable in main method
+
+        System.out.println(new LocalClass().apply(10));
+        System.out.println(anonymousClass.apply(10));
+        System.out.println(lambdaExpression.apply(10));
+
+        /*** CHAPTER 3 : end ***/
     }
 }
