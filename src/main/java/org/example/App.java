@@ -1,5 +1,8 @@
 package org.example;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.*;
 
 /**
@@ -133,6 +136,38 @@ public class App
         System.out.println(new LocalClass().apply(10));
         System.out.println(anonymousClass.apply(10));
         System.out.println(lambdaExpression.apply(10));
+
+        /*** CHAPTER 3 : end ***/
+
+        /**
+         * CHAPTER 4 : start
+         *  - method reference
+         *  - https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html
+         *
+         */
+        // reference static method
+        // 1 param no result => Consumer
+        Consumer<String> game = Game::play;
+        game.accept("EH");
+
+        // method of object of method reference
+        CommonLogVO log = new CommonLogVO("minssogi", LocalDateTime.now());
+        Supplier<String> regEmpId = log::getRegEmpId;
+        System.out.println(regEmpId.get());
+
+        // constructor method reference
+        Supplier<CommonLogVO> defaultGenerator = CommonLogVO::new;
+        Function<String, CommonLogVO> generate1Param = CommonLogVO::new;
+        System.out.println(defaultGenerator.get().toString());
+        System.out.println(generate1Param.apply("minssogi2").toString());
+
+        // etc
+        String[] fruits = {"Banana", "Pineapple", "appe"};
+        Arrays.sort(fruits, String::compareToIgnoreCase);
+        for (String fruit : fruits) {
+            System.out.print(fruit + ",");
+        }
+        System.out.println();
 
         /*** CHAPTER 3 : end ***/
     }
