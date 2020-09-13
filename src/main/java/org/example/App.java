@@ -1,8 +1,9 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 import java.util.function.*;
 
 /**
@@ -162,13 +163,77 @@ public class App
         System.out.println(generate1Param.apply("minssogi2").toString());
 
         // etc
-        String[] fruits = {"Banana", "Pineapple", "appe"};
+        String[] fruits = {"Banana", "Pineapple", "apple"};
         Arrays.sort(fruits, String::compareToIgnoreCase);
         for (String fruit : fruits) {
             System.out.print(fruit + ",");
         }
         System.out.println();
         /*** CHAPTER 4 : end ***/
+
+
+        /** CHAPTER 5 : start
+         *  - default method
+         *  - static method
+         *  - Default method and static method are support implement service with original interface.
+         *  - That means no need to additional implement existing implement class.
+         *  - Cannot be override equals and hasCode method provided in Object class as Default method
+         *  - It can be override
+         *  - It can be change to abstract method in extended interface.
+         *
+         *  https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html
+         *
+         */
+        DoSomething.printHello(); // static method
+        DoSomething doSomething1 = new DoSomething() {
+            @Override
+            public void doIt() {
+                System.out.println("### Do It !!! ###");
+            }
+        };
+        doSomething1.doIt();
+        doSomething1.printBye();// default method
+
+        // additional function in java(Default method, Static method)
+        List<String> names = Arrays.asList("Jack", "Rose", "Mike", "John", "Gorge");
+
+        // Collection
+        names.forEach(System.out::println);
+        System.out.println("==================================");
+        System.out.println();
+
+        Spliterator<String> spliterator1 = names.spliterator();
+        Spliterator<String> spliterator2 = spliterator1.trySplit();
+
+        while (spliterator1.tryAdvance(System.out::println));
+        System.out.println("#################################");
+        while (spliterator2.tryAdvance(System.out::println));
+
+        System.out.println();
+        System.out.println();
+
+        // Comparator
+        Comparator<String> compareToIgnoreCase = String::compareToIgnoreCase;
+
+        names.sort(compareToIgnoreCase);
+        names.forEach(System.out::println);
+
+        System.out.println();
+        System.out.println();
+
+        names.sort(compareToIgnoreCase.reversed());
+        names.forEach(System.out::println);
+
+
+        System.out.println();
+        System.out.println();
+
+        names.sort(compareToIgnoreCase.reversed().thenComparing(String::compareTo));
+        names.forEach(System.out::println);
+
+        StringPrinter stringPrinter = new StringPrinterImpl();
+        stringPrinter.helloPrinter();
+        /*** CHAPTER 5 : end ***/
 
 
     }
