@@ -231,6 +231,7 @@ public class App
         names.sort(compareToIgnoreCase.reversed().thenComparing(String::compareTo));
         names.forEach(System.out::println);
 
+        // Using abstract class for avoiding inconvenient abstract method implement
         StringPrinter stringPrinter = new StringPrinterImpl();
         stringPrinter.helloPrinter();
         /*** CHAPTER 5 : end ***/
