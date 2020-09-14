@@ -237,5 +237,12 @@ public class App
         /*** CHAPTER 5 : end ***/
 
 
+        /** CHAPTER 6 : start
+         *  - Stream is collection of data
+         *  - Stream API supports deal with stream data easily
+         *
+         *  https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html
+         *  https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+         */
     }
 }
