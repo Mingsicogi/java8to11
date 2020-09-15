@@ -244,5 +244,19 @@ public class App
          *  https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html
          *  https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
          */
+        List<String> devices = Arrays.asList("iPhone", "AirPods", "Mac", "iPad");
+
+        // mediated operator(map, filter...)
+        devices.stream().map(String::toUpperCase);
+
+        // terminated operator(foreach, collect...)
+        devices.stream().forEach(device -> {
+            System.out.println(Thread.currentThread().getName() + " - " + device);
+        });
+
+        // parallelStream
+        devices.parallelStream().forEach(device -> {
+            System.out.println(Thread.currentThread().getName() + " - " + device);
+        });
     }
 }
